@@ -1,0 +1,51 @@
+name: Deploy to Azure ACR and ACI
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'PHASES/02-conteneurs/APP/**'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to ACR
+        run: |
+          az acr login --name kgtformationregistry
+
+      - name: Build and push Docker image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t kgtformationregistry.azurecr.io/kgt-app:$IMAGE_TAG \
+            PHASES/02-conteneurs/APP/
+          docker push kgtformationregistry.azurecr.io/kgt-app:$IMAGE_TAG
+          echo "Image poussée : kgtformationregistry.azurecr.io/kgt-app:$IMAGE_TAG"
+
+      - name: Deploy to ACI
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          az container create \
+            --resource-group kgt-formation \
+            --name kgt-app \
+            --image kgtformationregistry.azurecr.io/kgt-app:$IMAGE_TAG \
+            --cpu 1 --memory 1 \
+            --os-type Linux \
+            --registry-login-server kgtformationregistry.azurecr.io \
+            --registry-username $(az acr credential show --name kgtformationregistry --query username -o tsv) \
+            --registry-password $(az acr credential show --name kgtformationregistry --query passwords[0].value -o tsv) \
+            --ports 8080 \
+            --ip-address public
+          echo "Déploiement Azure ACI lancé !"

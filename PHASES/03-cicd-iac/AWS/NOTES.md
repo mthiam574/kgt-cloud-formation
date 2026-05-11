@@ -1,16 +1,16 @@
-# AWS — Phase 03 IaC Terraform
+# AWS — Phase 03 CI/CD & IaC
 
-## Fichiers Terraform
+## Partie 1 — Terraform
 
-| Fichier           | Rôle                                    |
-|-------------------|-----------------------------------------|
-| main.tf           | Ressources à créer                      |
-| variables.tf      | Paramètres configurables                |
-| outputs.tf        | Valeurs affichées après apply           |
-| terraform.tfstate | Mémoire de l état (ne pas commiter)     |
+### Fichiers
+| Fichier           | Rôle                                |
+|-------------------|-------------------------------------|
+| main.tf           | Ressources à créer                  |
+| variables.tf      | Paramètres configurables            |
+| outputs.tf        | Valeurs affichées après apply       |
+| terraform.tfstate | Mémoire de l état (ne pas commiter) |
 
-## Ressources créées
-
+### Ressources créées
 | Ressource       | Nom                | Détail            |
 |-----------------|--------------------|-------------------|
 | Security Group  | kgt-app-sg-tf      | Port 8080 ouvert  |
@@ -18,24 +18,43 @@
 | Task Definition | kgt-app-tf         | 0.25 vCPU / 512Mo |
 | Service ECS     | kgt-app-service-tf | desired-count=1   |
 
-## Provider
+### Commandes
+terraform init / plan / apply / destroy
 
-provider "aws" {
-  region = var.aws_region
-}
+## Partie 2 — GitHub Actions CI/CD
 
-## Auth Terraform
-aws configure avec les clés IAM de formation-cli
+### Fichier pipeline
+.github/workflows/deploy-aws.yml
 
-## Commandes clés
-terraform init      - Telecharge le provider AWS
-terraform plan      - Previsualise les changements
-terraform apply     - Cree l infrastructure
-terraform destroy   - Supprime tout
+### Trigger
+Push sur branche main avec modifications dans PHASES/02-conteneurs/APP/
 
-## Points importants
-- tfstate ne jamais commiter dans Git
-- En production tfstate stocke dans S3 (backend remote)
-- Suffixe -tf pour distinguer des ressources manuelles
-- Les data sources lisent les ressources existantes sans les recreer
-- Les tags identifient les ressources creees par Terraform
+### Secrets GitHub requis
+| Secret               | Valeur              |
+|----------------------|---------------------|
+| AWS_ACCESS_KEY_ID    | Clé IAM formation-cli |
+| AWS_SECRET_ACCESS_KEY| Clé secrète IAM     |
+| AWS_REGION           | eu-west-3           |
+
+### Étapes du pipeline
+| Étape                | Rôle                              | CI/CD |
+|----------------------|-----------------------------------|-------|
+| checkout             | Télécharge le code                | CI    |
+| configure-aws        | Authentification AWS              | CI    |
+| login-ecr            | Authentification Docker sur ECR   | CI    |
+| build-and-push       | Build et push image sur ECR       | CI    |
+| deploy-ecs           | Mise à jour service ECS           | CD    |
+
+### Résultats
+| Version | Tag image        | Durée | Type  |
+|---------|------------------|-------|-------|
+| v2.0    | hash commit      | 26s   | CI    |
+| v3.0    | hash commit      | 28s   | CI/CD |
+
+## Leçons apprises
+- CI = build + test + push artefact (image Docker)
+- CD = déploiement automatique de l artefact
+- La frontière CI/CD = quand l image est prête sur ECR
+- github.sha donne un tag unique par commit
+- --force-new-deployment force ECS à utiliser la nouvelle image
+- Ne jamais commiter terraform.tfstate dans Git

@@ -1,45 +1,48 @@
-# Azure — Phase 03 IaC Terraform
+# Azure — Phase 03 CI/CD & IaC
 
-## Fichiers Terraform
+## Partie 1 — Terraform
 
-| Fichier           | Rôle                                    |
-|-------------------|-----------------------------------------|
-| main.tf           | Ressources à créer                      |
-| variables.tf      | Paramètres configurables                |
-| outputs.tf        | Valeurs affichées après apply           |
-| terraform.tfstate | Mémoire de l état (ne pas commiter)     |
+### Fichiers
+| Fichier           | Rôle                                |
+|-------------------|-------------------------------------|
+| main.tf           | Ressources à créer                  |
+| variables.tf      | Paramètres configurables            |
+| outputs.tf        | Valeurs affichées après apply       |
+| terraform.tfstate | Mémoire de l état (ne pas commiter) |
 
-## Ressources créées
-
+### Ressources créées
 | Ressource               | Nom        | Détail               |
 |-------------------------|------------|----------------------|
 | azurerm_container_group | kgt-app-tf | Conteneur ACI Linux  |
 
-## Data Sources utilisées
+### Data Sources utilisées
+| Data Source                | Rôle                           |
+|----------------------------|--------------------------------|
+| azurerm_resource_group     | Lit le RG existant             |
+| azurerm_container_registry | Récupère les credentials ACR   |
 
-| Data Source                   | Rôle                              |
-|-------------------------------|-----------------------------------|
-| azurerm_resource_group        | Lit le RG existant kgt-formation  |
-| azurerm_container_registry    | Récupère les credentials ACR      |
-
-## Provider
-
-provider "azurerm" {
-  features {}
-}
-
-## Auth Terraform Azure
+### Auth Terraform Azure
 az login suffit - pas d etape supplementaire necessaire
 
-## Commandes clés
-terraform init               - Telecharge le provider Azure
-terraform plan               - Previsualise les changements
-terraform apply --auto-approve  - Cree sans confirmation
-terraform destroy --auto-approve - Supprime sans confirmation
+### Commandes
+terraform init / plan / apply --auto-approve / destroy --auto-approve
 
-## Points importants
+## Partie 2 — GitHub Actions CI/CD
+
+### Pipeline à créer (prochaine étape)
+.github/workflows/deploy-azure.yml
+
+### Secrets GitHub requis
+| Secret                  | Valeur                              |
+|-------------------------|-------------------------------------|
+| AZURE_CREDENTIALS       | JSON du service principal Azure     |
+| AZURE_REGISTRY_LOGIN    | kgtformationregistry.azurecr.io     |
+| AZURE_REGISTRY_USERNAME | kgtformationregistry                |
+| AZURE_REGISTRY_PASSWORD | Mot de passe ACR                    |
+
+## Leçons apprises
 - az login suffit pour Terraform Azure
 - Les data sources recuperent les credentials ACR automatiquement
 - sensitive value masque les mots de passe dans le plan
+- Les namespaces doivent etre enregistres avant usage
 - Un seul resource group pour tout organiser
-- Providers et namespaces doivent etre enregistres avant usage

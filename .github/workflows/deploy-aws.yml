@@ -1,4 +1,4 @@
-name: Deploy to AWS ECR
+name: Deploy to AWS ECR and ECS
 
 on:
   push:
@@ -27,6 +27,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build and push Docker image
+        id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: kgt-app
@@ -35,4 +36,16 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
             PHASES/02-conteneurs/APP/
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "Image poussée : $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Deploy to ECS
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          aws ecs update-service \
+            --cluster kgt-formation \
+            --service kgt-app-service \
+            --force-new-deployment \
+            --region ${{ secrets.AWS_REGION }}
+          echo "Déploiement lancé sur ECS !"

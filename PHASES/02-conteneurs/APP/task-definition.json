@@ -1,0 +1,20 @@
+{
+  "family": "kgt-app",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::774941661781:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "kgt-app",
+      "image": "774941661781.dkr.ecr.eu-west-3.amazonaws.com/kgt-app:v1.0",
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ]
+}

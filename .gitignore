@@ -1,0 +1,23 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform.lock.hcl
+
+# Credentials
+*.pem
+*.key
+.aws/
+.azure/
+.config/gcloud/
+
+# Python
+__pycache__/
+*.pyc
+
+# Docker
+*.tar
+
+# Logs
+*.log

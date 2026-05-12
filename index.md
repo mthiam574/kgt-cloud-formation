@@ -12,7 +12,6 @@ pratique construite de zéro sur trois fournisseurs cloud en parallèle : Amazon
 (AWS), Google Cloud Platform (GCP) et Microsoft Azure.
 {: .fs-5 .fw-300 }
 
-[Voir la progression →](docs/progress.md)
 [GitHub ↗](https://github.com/mthiam574/kgt-cloud-formation){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
@@ -38,6 +37,7 @@ pratique construite de zéro sur trois fournisseurs cloud en parallèle : Amazon
 | [03 — IaC et CI/CD](docs/phase-03.md) | Automatisation | Terraform · GitHub Actions · Déploiement automatisé | ✅ Terminé |
 | [04 — Observabilité](docs/phase-04.md) | Supervision | Métriques · Logs · Alertes · Dashboards | ✅ Terminé |
 | [05 — Kubernetes](docs/phase-04.md) | Orchestration | EKS (Elastic Kubernetes Service) · GKE (Google Kubernetes Engine) · AKS (Azure Kubernetes Service) | ⏳ En cours |
+[Voir la progression →](docs/progress.md)
 
 ---
 

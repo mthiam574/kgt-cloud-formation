@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>CV Moustapha THIAM</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/*
+==============================================
+  TAILLE GLOBALE DU CV — modifier ici uniquement
+  Valeurs conseillées : 11px (compact) à 13px (aéré)
+==============================================
+*/
+:root { font-size: 14px; }
+
+body {
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  color: #1a1a1a;
+  background: #fff;
+  line-height: 1.6;
+}
+
+/* Astuce : gradient qui simule la bande grise sur toute la hauteur */
+.page {
+  width: 210mm;
+  margin: 0 auto;
+  background: linear-gradient(to right, #F0EDE8 64mm, #ffffff 64mm);
+}
+
+/* ── HEADER ── */
+.header {
+  overflow: hidden;
+  border-bottom: 3px solid #E8622A;
+}
+
+.header-left {
+  float: left;
+  width: 64mm;
+  background: #E8622A;
+  padding: 24px 20px;
+}
+
+.header-right {
+  margin-left: 64mm;
+  padding: 20px 28px;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 3px;
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: #E8622A;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.contact-line {
+  font-size: 0.875rem;
+  color: #333;
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+.contact-line span { color: #E8622A; margin-right: 5px; }
+
+/* ── BODY ── */
+.body { overflow: hidden; }
+
+.sidebar {
+  float: left;
+  width: 64mm;
+  padding: 24px 18px;
+}
+
+.main {
+  margin-left: 64mm;
+  padding: 24px 28px;
+}
+
+/* ── TITLES ── */
+.stitle {
+  font-size: 0.67rem;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #E8622A;
+  border-bottom: 1.5px solid #E8622A;
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+  margin-top: 22px;
+}
+
+.stitle:first-child { margin-top: 0; }
+
+/* ── SKILLS ── */
+.skill-block { margin-bottom: 14px; }
+
+.skill-label {
+  font-size: 0.71rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #444;
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin: 2px 2px 2px 0;
+}
+
+.tag.hot {
+  background: #E8622A;
+  border-color: #E8622A;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── CERTIF ── */
+.certif-item {
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.cdot {
+  float: left;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #E8622A;
+  margin-top: 4px;
+  margin-right: 9px;
+}
+
+.cdot.open {
+  background: none;
+  border: 2px solid #E8622A;
+}
+
+.certif-text { font-size: 0.875rem; color: #444; line-height: 1.4; }
+.certif-text b { display: block; color: #1a1a1a; font-size: 0.92rem; font-weight: 700; }
+
+/* ── FORMATION ── */
+.edu-item { margin-bottom: 13px; }
+.edu-year { font-family: 'Courier New', monospace; font-size: 0.79rem; color: #E8622A; font-weight: 700; }
+.edu-degree { font-size: 0.92rem; font-weight: 700; color: #1a1a1a; line-height: 1.3; }
+.edu-school { font-size: 0.83rem; color: #777; }
+
+/* ── LANGUES ── */
+.lang-item { margin-bottom: 10px; }
+.lang-name { font-size: 0.92rem; font-weight: 700; color: #1a1a1a; }
+.lang-level { font-size: 0.83rem; color: #777; }
+
+/* ── PROFIL ── */
+.profil {
+  font-size: 0.92rem;
+  color: #333;
+  line-height: 1.75;
+  border-left: 3px solid #E8622A;
+  padding-left: 14px;
+  margin-bottom: 26px;
+  text-align: justify;
+}
+
+/* ── EXPERIENCE ── */
+.exp {
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.exp:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.exp-top { overflow: hidden; margin-bottom: 3px; }
+
+.exp-period {
+  float: right;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #E8622A;
+  background: #FDF0E8;
+  padding: 3px 9px;
+  border-radius: 3px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.exp-role {
+  font-size: 1.04rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  overflow: hidden;
+}
+
+.exp-client { font-size: 0.875rem; font-weight: 700; color: #E8622A; margin-bottom: 3px; }
+.exp-desc { font-size: 0.83rem; color: #999; font-style: italic; margin-bottom: 10px; }
+
+.exp-tasks { list-style: none; margin-bottom: 10px; }
+
+.exp-tasks li {
+  font-size: 0.875rem;
+  color: #333;
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 5px;
+  line-height: 1.55;
+}
+
+.exp-tasks li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: #E8622A;
+  font-weight: 900;
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
+.tools { margin-top: 4px; }
+
+.tool {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: #777;
+  background: #F5F2EE;
+  border: 1px solid #ddd;
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin: 2px 2px 2px 0;
+}
+
+.gap {
+  padding: 8px 14px;
+  background: #FAF8F5;
+  border-left: 2px solid #ccc;
+  margin-bottom: 22px;
+  font-size: 0.875rem;
+  color: #999;
+  font-style: italic;
+}
+
+@media print {
+  @page { size: A4; margin: 8mm; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 100%; }
+  .exp { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="name">Moustapha<br>THIAM</div>
+    </div>
+    <div class="header-right">
+      <div class="title">Ingénieur Systèmes Linux Senior & DevOps</div>
+      <div class="subtitle">+15 ans · Admin Sys / Réseau / DevOps · Freelance KGT Technologies</div>
+      <div class="contact-line"><span>▸</span>Cannes, PACA — mobilité France / Luxembourg</div>
+      <div class="contact-line"><span>▸</span>moustaphathiam@hotmail.com &nbsp;·&nbsp; +337 66 48 74 44</div>
+      <div class="contact-line"><span>▸</span>linkedin.com/in/moustapha-thiam-03b46a9a &nbsp;·&nbsp; github.com/mthiam574</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="stitle">Compétences</div>
+
+      <div class="skill-block">
+        <div class="skill-label">Systèmes</div>
+        <span class="tag hot">Linux</span><span class="tag hot">Unix</span><span class="tag">Debian</span><span class="tag">Red Hat</span><span class="tag">Ubuntu</span><span class="tag">Solaris</span><span class="tag">Windows</span>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-label">DevOps / Cloud / IaC</div>
+        <span class="tag hot">Docker</span><span class="tag hot">Ansible</span><span class="tag hot">Terraform</span><span class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-label">Bases de données</div>
+        <span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Oracle</span><span class="tag">MongoDB</span><span class="tag">Elasticsearch</span>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-label">Langages & Scripts</div>
+        <span class="tag hot">Shell / Bash</span><span class="tag">Python</span><span class="tag">Perl</span><span class="tag">PHP</span><span class="tag">SQL</span>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-label">Middleware & Outils</div>
+        <span class="tag">WebSphere</span><span class="tag">Tomcat</span><span class="tag">Apache</span><span class="tag">MQ</span><span class="tag">Autosys</span><span class="tag">ITIL</span>
+      </div>
+
+      <div class="stitle">Certifications</div>
+
+      <div class="certif-item">
+        <div class="cdot"></div>
+        <div class="certif-text"><b>Docker</b>Dyma — 2025</div>
+      </div>
+      <div class="certif-item">
+        <div class="cdot"></div>
+        <div class="certif-text"><b>Terraform</b>Dyma — 2025</div>
+      </div>
+      <div class="certif-item">
+        <div class="cdot open"></div>
+        <div class="certif-text"><b>Terraform Associate</b>HashiCorp — en cours</div>
+      </div>
+      <div class="certif-item">
+        <div class="cdot open"></div>
+        <div class="certif-text"><b>CCNA 200-301</b>Cisco — en cours</div>
+      </div>
+
+      <div class="stitle">Formation</div>
+
+      <div class="edu-item">
+        <div class="edu-year">2004</div>
+        <div class="edu-degree">Ingénieur Technologue</div>
+        <div class="edu-school">ESP — Dakar</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">1999</div>
+        <div class="edu-degree">BTS Informatique de gestion</div>
+        <div class="edu-school">ESP — Dakar</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">1995</div>
+        <div class="edu-degree">Bac Série C</div>
+        <div class="edu-school">Dakar</div>
+      </div>
+
+      <div class="stitle">Langues</div>
+
+      <div class="lang-item">
+        <div class="lang-name">Français</div>
+        <div class="lang-level">Langue de travail</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">Anglais</div>
+        <div class="lang-level">C1 — Expérimenté</div>
+      </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <p class="profil">
+        Ingénieur Systèmes Linux Senior avec plus de 15 ans d'expérience sur des environnements critiques en finance, santé et organisations internationales. Solide expertise en administration Linux/Unix, gestion d'incidents N3 et automatisation des processus. En montée en compétences active sur le DevOps et l'IaC : certifications Terraform et Docker obtenues, CCNA en cours, labs multi-cloud AWS/GCP/Azure réalisés. Capable d'intervenir sur des missions Admin Système, Admin Système & Réseau, ou DevOps junior. Disponible en freelance via KGT Technologies — mobilité France et Luxembourg.
+      </p>
+
+      <div class="stitle">Expériences Professionnelles</div>
+
+      <!-- KGT -->
+      <div class="exp">
+        <div class="exp-top">
+          <div class="exp-period">Jan 2026 → Présent</div>
+          <div class="exp-role">Ingénieur Systèmes Linux — Freelance</div>
+        </div>
+        <div class="exp-client">KGT Technologies (SASU) — Cannes</div>
+        <div class="exp-desc">Lancement d'une activité indépendante en ingénierie système et DevOps</div>
+        <ul class="exp-tasks">
+          <li>Mise en place de l'infrastructure IT : VPS Linux, serveur mail Postfix/Dovecot, ERP Dolibarr</li>
+          <li>Formation et certification Cloud/IaC : Terraform, Docker, AWS, GCP, Azure, Kubernetes</li>
+          <li>Développement d'un portfolio technique documenté sur GitHub</li>
+          <li>Déploiement CI/CD multi-cloud avec GitHub Actions</li>
+        </ul>
+        <div class="tools">
+          <span class="tool">Linux</span><span class="tool">Docker</span><span class="tool">Terraform</span><span class="tool">Ansible</span><span class="tool">AWS</span><span class="tool">GitHub Actions</span><span class="tool">Postfix</span>
+        </div>
+      </div>
+
+      <!-- CHU -->
+      <div class="exp">
+        <div class="exp-top">
+          <div class="exp-period">Mai 2025 → Déc 2025</div>
+          <div class="exp-role">Responsable Droits et Habilitations</div>
+        </div>
+        <div class="exp-client">CHU de Nice</div>
+        <div class="exp-desc">Gestion des accès au Dossier Patient Informatisé (DPI) ORBIS</div>
+        <ul class="exp-tasks">
+          <li>Attribution et révision des droits selon les profils utilisateurs</li>
+          <li>Suivi et amélioration de la matrice de droits et habilitations</li>
+          <li>Automatisation des scripts de mise à jour des médecins</li>
+          <li>Coordination avec la commission des droits et habilitations</li>
+        </ul>
+        <div class="tools">
+          <span class="tool">Windows</span><span class="tool">Oracle</span><span class="tool">MySQL</span><span class="tool">Apache</span><span class="tool">Excel</span>
+        </div>
+      </div>
+
+      <!-- UBS -->
+      <div class="exp">
+        <div class="exp-top">
+          <div class="exp-period">Juin 2022 → Mai 2025</div>
+          <div class="exp-role">Ingénieur Systèmes Linux</div>
+        </div>
+        <div class="exp-client">UBS Monaco — 3 ans</div>
+        <div class="exp-desc">Disponibilité et intégrité des applications IT en milieu bancaire critique</div>
+        <ul class="exp-tasks">
+          <li>Administration et supervision des serveurs Unix/Linux (Solaris & Linux) en production bancaire</li>
+          <li>Support UAT/PROD : transferts sécurisés, installation et mise à niveau d'applications</li>
+          <li>Expertise sur WebSphere, MQ, Tomcat, PowerCenter et Autosys</li>
+          <li>Automatisation de processus répétitifs, réduction des interventions manuelles</li>
+          <li>Gestion et résolution d'incidents N3, respect des standards ITIL</li>
+          <li>Participation aux exercices BCM — astreintes 24/7</li>
+        </ul>
+        <div class="tools">
+          <span class="tool">Linux</span><span class="tool">Unix/Solaris</span><span class="tool">WebSphere</span><span class="tool">MQ</span><span class="tool">Tomcat</span><span class="tool">PowerCenter</span><span class="tool">Autosys</span><span class="tool">Oracle</span>
+        </div>
+      </div>
+
+      <!-- GAP -->
+      <div class="gap">2019 → 2022 — Installation en France (démarches administratives, période COVID)</div>
+
+      <!-- FAWZOU -->
+      <div class="exp">
+        <div class="exp-top">
+          <div class="exp-period">2016 → 2019</div>
+          <div class="exp-role">Ingénieur Systèmes Linux — Chef de projet</div>
+        </div>
+        <div class="exp-client">Fawzou Technologies</div>
+        <div class="exp-desc">Maintien en condition opérationnelle & déploiement CRM</div>
+        <ul class="exp-tasks">
+          <li>Pilotage du projet CRM : étude de l'existant, proposition de solution LAMP</li>
+          <li>Création de scripts d'automatisation de l'installation (Perl, PHP)</li>
+          <li>Mise en œuvre de l'environnement de développement (Eclipse, SVN)</li>
+        </ul>
+        <div class="tools">
+          <span class="tool">Linux</span><span class="tool">Apache</span><span class="tool">PHP</span><span class="tool">MySQL</span><span class="tool">Perl</span><span class="tool">SVN</span><span class="tool">Bacula</span>
+        </div>
+      </div>
+
+      <!-- IAAF -->
+      <div class="exp">
+        <div class="exp-top">
+          <div class="exp-period">2008 → 2015</div>
+          <div class="exp-role">Responsable IT</div>
+        </div>
+        <div class="exp-client">IAAF Bureau de Dakar — 8 ans</div>
+        <div class="exp-desc">Responsable du SI du bureau présidentiel à Dakar, en continuité avec Monaco</div>
+        <ul class="exp-tasks">
+          <li>Installation et administration complète des infrastructures IT Linux et Windows</li>
+          <li>Mise en place de solutions de sauvegarde, PRA et redondance internet (IPCop)</li>
+          <li>Services : Samba, LDAP, DHCP</li>
+        </ul>
+        <div class="tools">
+          <span class="tool">Linux</span><span class="tool">Windows</span><span class="tool">Samba</span><span class="tool">LDAP</span><span class="tool">DHCP</span><span class="tool">IPCop</span>
+        </div>
+      </div>
+
+      <!-- ANTERIEUR -->
+      <div class="exp">
+        <div class="exp-top">
+          <div class="exp-period">2004 → 2007</div>
+          <div class="exp-role">Expériences antérieures</div>
+        </div>
+        <div class="exp-client">SOMAT · Commission Nationale pour la Francophonie</div>
+        <ul class="exp-tasks">
+          <li>Ingénieur Système Linux/Windows — déploiement SI, OpenVPN, Postfix, Bacula (SOMAT)</li>
+          <li>Responsable IT — maintenance Linux/Windows, GLPI, intranet gouvernemental (CNF)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

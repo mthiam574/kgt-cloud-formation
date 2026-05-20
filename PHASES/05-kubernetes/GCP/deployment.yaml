@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kgt-app
+  labels:
+    app: kgt-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kgt-app
+  template:
+    metadata:
+      labels:
+        app: kgt-app
+    spec:
+      containers:
+      - name: kgt-app
+        image: europe-west9-docker.pkg.dev/project-c2ec1119-b53b-4de5-a77/kgt-app/kgt-app:v1.0
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"

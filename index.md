@@ -3,35 +3,47 @@ layout: home
 title: Accueil
 nav_order: 1
 ---
+
 # Formation DevOps Cloud — Moustapha THIAM
 {: .fs-9 }
+
 Administrateur système Linux en formation DevOps Cloud. Ce site documente une formation
 pratique construite de zéro sur trois fournisseurs cloud en parallèle : Amazon Web Services
 (AWS), Google Cloud Platform (GCP) et Microsoft Azure.
 {: .fs-5 .fw-300 }
+
 [Voir la progression →](docs/progress/){: .btn .btn-primary .fs-5 .mb-4 .mr-2 }
 [GitHub ↗](https://github.com/mthiam574/kgt-cloud-formation){: .btn .fs-5 .mb-4 .mb-md-0 }
+
 ---
+
 ## Services pratiqués par catégorie
+
 | Catégorie | AWS | GCP | Azure |
 |---|---|---|---|
 | **Registre de conteneurs** | ECR — Elastic Container Registry | Artifact Registry | ACR — Azure Container Registry |
 | **Exécution de conteneurs** | ECS Fargate — Elastic Container Service | Cloud Run | ACI — Azure Container Instances |
+| **Orchestration Kubernetes** | EKS — Elastic Kubernetes Service | GKE — Google Kubernetes Engine | AKS — Azure Kubernetes Service |
 | **Infrastructure as Code** | Terraform | Terraform | Terraform |
 | **CI/CD** — Intégration et déploiement continus | GitHub Actions | GitHub Actions ⏳ | GitHub Actions |
 | **Supervision** | CloudWatch | Cloud Monitoring | Azure Monitor |
-| **Orchestration Kubernetes** | EKS — Elastic Kubernetes Service | GKE — Google Kubernetes Engine | AKS — Azure Kubernetes Service |
+
 ---
+
 ## Phases de la formation
+
 | Phase | Thème | Contenu | Statut |
 |---|---|---|---|
-| [01 — Fondations](docs/phase-01/) | Mise en place | CLI · IAM · Alertes budget | ✅ Terminé |
+| [01 — Fondations](docs/phase-01/) | Mise en place | CLI (Command Line Interface) · IAM (Identity and Access Management) · Alertes budget | ✅ Terminé |
 | [02 — Conteneurs](docs/phase-02/) | Containerisation | Docker · Registres d'images · Services d'exécution managés | ✅ Terminé |
 | [03 — IaC et CI/CD](docs/phase-03/) | Automatisation | Terraform · GitHub Actions · Déploiement automatisé | ✅ Terminé |
 | [04 — Observabilité](docs/phase-04/) | Supervision | Métriques · Logs · Alertes · Dashboards | ✅ Terminé |
 | [05 — Kubernetes](docs/phase-05/) | Orchestration | EKS · GKE · AKS | ✅ Terminé |
+
 ---
+
 ## Environnement de travail
+
 | Élément | Détail |
 |---|---|
 | **Système d'exploitation** | Debian Linux — utilisateur `mthiam` |
